@@ -24,10 +24,10 @@ public class Task {
 	private int taskId;
 	
 	@Column(name="start_date")
-	private Date StartDate;
+	private String StartDate;
 	
 	@Column(name="due_date")
-	private Date DueDate;
+	private String DueDate;
 	
 	@Column(name="task_description")
 	private String TaskDescription;
@@ -41,7 +41,7 @@ public class Task {
 	@Column(name="task_link")
 	private String TaskLink;
 
-	public Task(int projectId, int taskId, Date startDate, Date dueDate, String taskDescription, String taskAssignedTo,
+	public Task(int projectId, int taskId, String startDate, String dueDate, String taskDescription, String taskAssignedTo,
 			String taskStatus, String taskLink) {
 		super();
 		ProjectId = projectId;
@@ -70,19 +70,19 @@ public class Task {
 		this.taskId = taskId;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return StartDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		StartDate = startDate;
 	}
 
-	public Date getDueDate() {
+	public String getDueDate() {
 		return DueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(String dueDate) {
 		DueDate = dueDate;
 	}
 

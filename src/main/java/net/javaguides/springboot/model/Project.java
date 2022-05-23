@@ -5,7 +5,7 @@ import java.sql.Date;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="Projects")
+@Table(name ="Project")
 public class Project {
 
 	@Id
@@ -15,14 +15,14 @@ public class Project {
 	@Column(name="project_id")
 	private int ProjectId;
 	
-	@Column(name="manager_id")
+	@Column(name="person_id")
 	private int ManagerId;
 	
 	@Column(name="start_date")
-	private Date StartDate;
+	private String StartDate;
 	
 	@Column(name="due_date")
-	private Date DueDate;
+	private String DueDate;
 	
 	@Column(name="project_description")
 	private String ProjectDescription;
@@ -49,19 +49,19 @@ public class Project {
 		ManagerId = managerId;
 	}
 
-	public Date getStartDate() {
+	public String getStartDate() {
 		return StartDate;
 	}
 
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		StartDate = startDate;
 	}
 
-	public Date getDueDate() {
+	public String getDueDate() {
 		return DueDate;
 	}
 
-	public void setDueDate(Date dueDate) {
+	public void setDueDate(String dueDate) {
 		DueDate = dueDate;
 	}
 
@@ -89,7 +89,7 @@ public class Project {
 		ProjectLink = projectLink;
 	}
 
-	public Project(int projectId, int managerId, Date startDate, Date dueDate, String projectDescription,
+	public Project(int projectId, int managerId, String startDate, String dueDate, String projectDescription,
 			String projectStatus, String projectLink) {
 		super();
 		ProjectId = projectId;

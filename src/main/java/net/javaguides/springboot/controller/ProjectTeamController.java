@@ -40,28 +40,28 @@ public class ProjectTeamController {
 	@GetMapping("/ProjectTeamList")
 	public ResponseEntity<List<ProjectTeam>> getAllProjectDetails()
 	{
-		List<ProjectTeam> list= projectteamservice.findAll();
+		List<ProjectTeam> list= this.projectteamservice.findAll();
 		return new ResponseEntity<List<ProjectTeam>>(list, HttpStatus.OK);
 	}
 	
 	@GetMapping("/getProjectTeamById/{ProjectId}")
 	public ResponseEntity<ProjectTeam> getProjectById(@PathVariable("ProjectId")Integer ProjectId)
 	{
-		ProjectTeam us=projectteamservice.getById(ProjectId);
+		ProjectTeam us=this.projectteamservice.getById(ProjectId);
 		return new ResponseEntity<ProjectTeam>(us, HttpStatus.OK);
 	}
 	@PutMapping("/updateProjectTeam/{ProjectId}")
 	public ResponseEntity<String> updateProject(@PathVariable("ProjectId") Integer ProjectId,@RequestBody ProjectTeam project)
 	{
-		ProjectTeam tempFromDB=projectteamservice.getById(ProjectId);
+		ProjectTeam tempFromDB=this.projectteamservice.getById(ProjectId);
 		tempFromDB.copyProjectTeam(project);
-		projectteamservice.save(tempFromDB);
+		this.projectteamservice.save(tempFromDB);
 		return new ResponseEntity<String>("Project Team Updated", HttpStatus.OK);
 	}
 	@DeleteMapping("/deleteProjectTeam/{ProjectId}")
 	public ResponseEntity<String> deleteManager(@PathVariable("ProjectId") Integer ProjectId)
 	{
-		projectteamservice.deleteById(ProjectId);
+		this.projectteamservice.deleteById(ProjectId);
 		return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
 	}
 
