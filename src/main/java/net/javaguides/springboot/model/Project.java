@@ -1,7 +1,6 @@
 package net.javaguides.springboot.model;
 
 
-import java.sql.Date;
 import javax.persistence.*;
 
 @Entity

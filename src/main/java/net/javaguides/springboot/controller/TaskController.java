@@ -18,7 +18,7 @@ import net.javaguides.springboot.model.Task;
 import net.javaguides.springboot.repository.TaskRepository;
 
 @RestController
-@RequestMapping("/Task")
+@RequestMapping("/Tasks")
 public class TaskController {
 	
 	@Autowired

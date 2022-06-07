@@ -1,7 +1,5 @@
 package net.javaguides.springboot.model;
 
-import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -128,5 +126,9 @@ public class Task {
 		this.TaskDescription= obj.getTaskDescription();
 		this.TaskLink= obj.getTaskLink();
 		this.TaskStatus= obj.getTaskStatus();
+	}
+	public Task()
+	{
+		
 	}
 }

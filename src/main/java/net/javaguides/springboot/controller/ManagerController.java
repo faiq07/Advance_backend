@@ -42,7 +42,6 @@ public class ManagerController {
 		List<Manager> list= managerservice.findAll();
 		return new ResponseEntity<List<Manager>>(list, HttpStatus.OK);
 	}
-	
 	@GetMapping("/getmanagerById/{ManagerId}")
 	public ResponseEntity<Manager> getUserById(@PathVariable("ManagerId")Integer ManagerId)
 	{

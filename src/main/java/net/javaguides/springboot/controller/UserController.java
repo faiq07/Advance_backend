@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import net.javaguides.springboot.model.SignIn;
 import net.javaguides.springboot.model.User;
 import net.javaguides.springboot.repository.UserRepository;
+import service.UserSerivceImp;
+import service.UserService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/User")
 public class UserController {
 	
 	@Autowired
@@ -27,6 +30,7 @@ public class UserController {
 	//private UserService service= new UserSerivceImp();
 	@GetMapping("/Persons")
 	public @ResponseBody List<User> getUsers(){
+		
 		return this.userservice.findAll();
 	}
 	
@@ -34,8 +38,11 @@ public class UserController {
 	@PostMapping("/saveuser")
 	public ResponseEntity<String> saveuser(@RequestBody User user)
 	{
+		user.setId(13);
+		user.setPersonId(14);
+		System.out.println(user.toString());
 		this.userservice.save(user);
-		user.print();
+		
 		return new ResponseEntity<String>("User Created", HttpStatus.OK);
 		
 	}
@@ -44,6 +51,10 @@ public class UserController {
 	public ResponseEntity<List<User>> getAllUserDetails()
 	{
 		List<User> list= userservice.findAll();
+		for(User i: list)
+		{
+			i.print();
+		}
 		return new ResponseEntity<List<User>>(list, HttpStatus.OK);
 	}
 	
@@ -69,7 +80,9 @@ public class UserController {
 	}
 	
 	@PostMapping("/checkforlogin")
+	@CrossOrigin
 	public ResponseEntity<Integer> validation(@RequestBody SignIn obj){
+		obj.print();
 		List<User> temp= this.getUsers();
 		int check=0;
 		for (User o: temp)

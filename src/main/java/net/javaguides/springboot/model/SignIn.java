@@ -21,5 +21,10 @@ public class SignIn {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+	public void print()
+	{
+		System.out.println(this.email);
+		System.out.println(this.pass);
+	}
 	
 }
