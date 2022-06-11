@@ -10,16 +10,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name ="Manager")
 public class Manager {
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	 private Long id;
+	
+	@Column(name="manager_id")
+	private int ManagerId;
 	
 	@Column(name="project_id")
 	private int ProjectId;
 	
-	@Column(name="manager_id")
-	private int ManagerId;
+	
 
 	public Manager(int projectId, int managerId) {
 		super();

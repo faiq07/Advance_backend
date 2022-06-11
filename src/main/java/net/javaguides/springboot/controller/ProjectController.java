@@ -1,5 +1,6 @@
 package net.javaguides.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,5 +64,36 @@ public class ProjectController {
 		projectservice.deleteById(ProjectId);
 		return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
 	}
+	
+	public List<Project> getByManagerID(@RequestBody int managerid)
+	{
+		List<Project> obj=getAllManagers();
+		List<Project> obj2= new ArrayList<Project>();
+		for(Project p: obj)
+		{
+			if(p.getManagerId()==managerid)
+			{
+				obj2.add(p);
+			}
+		}
+		return obj2;
+		
+	}
+	@GetMapping("/getProjectByIds")
+	public ResponseEntity<Project> getProjectByIds(@RequestBody Integer ProjectId)
+	{
+		List<Project> obj=getAllManagers();
+		Project us= new Project();
+		for(Project p: obj)
+		{
+			if(p.getProjectId()==ProjectId)
+			{
+				us.copyProject(p);
+				break;
+			}
+		}
+		return new ResponseEntity<Project>(us, HttpStatus.OK);
+	}
 
+	
 }

@@ -12,14 +12,17 @@ import javax.persistence.Table;
 public class Task {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
+	  @GeneratedValue(strategy=GenerationType.AUTO)
+	  private Long id;
+
 	@Column(name="project_id")
 	private int ProjectId;
 	
 	@Column(name="task_id")
 	private int taskId;
+	
+	@Column(name="task_title")
+	private String TaskTitle;
 	
 	@Column(name="start_date")
 	private String StartDate;
@@ -31,7 +34,7 @@ public class Task {
 	private String TaskDescription;
 
 	@Column(name="task_assignedTo")
-	private String TaskAssignedTo;
+	private int TaskAssignedTo;
 	
 	@Column(name="task_status")
 	private String TaskStatus;
@@ -39,17 +42,28 @@ public class Task {
 	@Column(name="task_link")
 	private String TaskLink;
 
-	public Task(int projectId, int taskId, String startDate, String dueDate, String taskDescription, String taskAssignedTo,
-			String taskStatus, String taskLink) {
+
+
+	public Task(int projectId, int taskId, String taskTitle, String startDate, String dueDate, String taskDescription,
+			int taskAssignedTo, String taskStatus, String taskLink) {
 		super();
 		ProjectId = projectId;
 		this.taskId = taskId;
+		TaskTitle = taskTitle;
 		StartDate = startDate;
 		DueDate = dueDate;
 		TaskDescription = taskDescription;
 		TaskAssignedTo = taskAssignedTo;
 		TaskStatus = taskStatus;
 		TaskLink = taskLink;
+	}
+
+	public String getTaskTitle() {
+		return TaskTitle;
+	}
+
+	public void setTaskTitle(String taskTitle) {
+		TaskTitle = taskTitle;
 	}
 
 	public int getProjectId() {
@@ -92,11 +106,11 @@ public class Task {
 		TaskDescription = taskDescription;
 	}
 
-	public String getTaskAssignedTo() {
+	public int getTaskAssignedTo() {
 		return TaskAssignedTo;
 	}
 
-	public void setTaskAssignedTo(String taskAssignedTo) {
+	public void setTaskAssignedTo(int taskAssignedTo) {
 		TaskAssignedTo = taskAssignedTo;
 	}
 
@@ -126,6 +140,7 @@ public class Task {
 		this.TaskDescription= obj.getTaskDescription();
 		this.TaskLink= obj.getTaskLink();
 		this.TaskStatus= obj.getTaskStatus();
+		this.TaskTitle= obj.getTaskTitle();
 	}
 	public Task()
 	{

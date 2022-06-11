@@ -9,8 +9,8 @@ import javax.persistence.*;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	  @GeneratedValue(strategy=GenerationType.AUTO)
+	  private Long id;
 	
 	@Column(name="person_id")
 	private int PersonId;
@@ -20,6 +20,9 @@ public class User {
 	
 	@Column(name="Password")
 	private String Password;
+	
+	@Column(name="type")
+	private String type;
 	
 	@Column(name="Email")
 	private String email;
@@ -33,16 +36,6 @@ public class User {
 	
 	public User(){
 		
-	}
-
-
-	public long getId() {
-		return id;
-	}
-
-
-	public void setId(long id) {
-		this.id = id;
 	}
 
 	public int getPersonId() {
@@ -105,15 +98,27 @@ public class User {
 	}
 
 
-	public User(int personId, String userName, String password, String email, String address, String phoneNumber) {
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public User(int personId, String userName, String password, String type, String email, String address,
+			String phoneNumber) {
 		super();
 		PersonId = personId;
 		UserName = userName;
 		Password = password;
+		this.type = type;
 		this.email = email;
 		Address = address;
 		PhoneNumber = phoneNumber;
 	}
+
 	public boolean checklogin(Object O)
 	{
 		User u=(User)O;
@@ -165,12 +170,12 @@ public class User {
 		this.email = obj.getEmail();
 		this.Address = obj.getAddress();
 		this.PhoneNumber = obj.getPassword();
+		this.type= obj.getType();
 	}
 	public void print()
 	{
 		System.out.println(this.Address);
 		System.out.println(this.email);
-		System.out.println(this.id);
 		System.out.println(this.Password);
 		System.out.println(this.PersonId);
 		System.out.println(this.PhoneNumber);

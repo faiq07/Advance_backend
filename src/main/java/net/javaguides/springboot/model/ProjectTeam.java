@@ -12,8 +12,8 @@ import javax.persistence.Table;
 public class ProjectTeam {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	  @GeneratedValue(strategy=GenerationType.AUTO)
+	  private Long id;
 	
 	@Column(name="project_id")
 	private int ProjectId;
@@ -23,12 +23,17 @@ public class ProjectTeam {
 	
 	@Column(name="employee_id")
 	private int EmployeeId;
+	
+	@Column(name="employee_type")
+	private String Employeetype;
 
-	public ProjectTeam(int projectId, int managerId, int employeeId) {
+	public ProjectTeam(int projectId, int managerId, int employeeId, String employeetype) {
 		super();
 		ProjectId = projectId;
 		ManagerId = managerId;
 		EmployeeId = employeeId;
+		Employeetype=employeetype;
+		
 	}
 
 	public int getProjectId() {
@@ -60,5 +65,15 @@ public class ProjectTeam {
 		this.EmployeeId= obj.getEmployeeId();
 		this.ManagerId= obj.getManagerId();
 		this.ProjectId= obj.getProjectId();
+		this.Employeetype=obj.getEmployeetype();
 	}
+
+	public String getEmployeetype() {
+		return Employeetype;
+	}
+
+	public void setEmployeetype(String employeetype) {
+		Employeetype = employeetype;
+	}
+	
 }

@@ -1,6 +1,7 @@
 package net.javaguides.springboot.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import net.javaguides.springboot.model.SignIn;
+import net.javaguides.springboot.model.Task;
 import net.javaguides.springboot.model.User;
+import net.javaguides.springboot.repository.TaskRepository;
 import net.javaguides.springboot.repository.UserRepository;
 import service.UserSerivceImp;
 import service.UserService;
@@ -27,6 +30,8 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository userservice;
+	@Autowired
+	private TaskController taskservice;
 	//private UserService service= new UserSerivceImp();
 	@GetMapping("/Persons")
 	public @ResponseBody List<User> getUsers(){
@@ -36,14 +41,12 @@ public class UserController {
 	
 	
 	@PostMapping("/saveuser")
-	public ResponseEntity<String> saveuser(@RequestBody User user)
+	public ResponseEntity<Integer> saveuser(@RequestBody User user)
 	{
-		user.setId(13);
-		user.setPersonId(14);
 		System.out.println(user.toString());
 		this.userservice.save(user);
 		
-		return new ResponseEntity<String>("User Created", HttpStatus.OK);
+		return new ResponseEntity<Integer>(1, HttpStatus.OK);
 		
 	}
 	
@@ -84,17 +87,15 @@ public class UserController {
 	public ResponseEntity<Integer> validation(@RequestBody SignIn obj){
 		obj.print();
 		List<User> temp= this.getUsers();
-		int check=0;
+		int check=-1;
 		for (User o: temp)
 		{
 			if(o.getEmail().equals(obj.getEmail()) && o.getPassword().equals(obj.getPass()))
 			{
-				check=1;
+				check=o.getPersonId();
 			}
 		}
 		
 		return new ResponseEntity<Integer>(check, HttpStatus.OK);
 	}
-	
-	
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import net.javaguides.springboot.model.Manager;
+import net.javaguides.springboot.model.Project;
 import net.javaguides.springboot.repository.ManagerRepository;
 
 @RestController
@@ -23,6 +24,7 @@ public class ManagerController {
 	
 	@Autowired
 	private ManagerRepository managerservice;
+	private ProjectController projectservice;
 	
 	@GetMapping("/getAllmanagers")
 	public @ResponseBody List<Manager> getAllManagers(){
@@ -61,5 +63,13 @@ public class ManagerController {
 	{
 		managerservice.deleteById(ManagerId);
 		return new ResponseEntity<String>("Deleted Successfully", HttpStatus.OK);
+	}
+	@PostMapping("/getProjectList")
+	public ResponseEntity<List<Project>> getProjectByManager(@RequestBody int managerid)
+	{
+		
+		List<Project> obj=projectservice.getByManagerID(managerid);
+		return new ResponseEntity<List<Project>>(obj, HttpStatus.OK);
+		
 	}
 }

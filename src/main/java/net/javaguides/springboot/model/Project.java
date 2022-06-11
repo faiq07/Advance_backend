@@ -6,16 +6,22 @@ import javax.persistence.*;
 @Entity
 @Table(name ="Project")
 public class Project {
+		
+	  @Id
+	  @GeneratedValue(strategy=GenerationType.AUTO)
+	  private Long id;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
-	
 	@Column(name="project_id")
 	private int ProjectId;
 	
 	@Column(name="person_id")
 	private int ManagerId;
+	
+	@Column(name="project_title")
+	private String ProjectTitle;
+	
+	@Column(name="projectx_type")
+	private String ProjectType;
 	
 	@Column(name="start_date")
 	private String StartDate;
@@ -88,11 +94,15 @@ public class Project {
 		ProjectLink = projectLink;
 	}
 
-	public Project(int projectId, int managerId, String startDate, String dueDate, String projectDescription,
-			String projectStatus, String projectLink) {
+
+	
+	public Project(int projectId, int managerId, String projectTitle, String projectType, String startDate,
+			String dueDate, String projectDescription, String projectStatus, String projectLink) {
 		super();
 		ProjectId = projectId;
 		ManagerId = managerId;
+		ProjectTitle = projectTitle;
+		ProjectType = projectType;
 		StartDate = startDate;
 		DueDate = dueDate;
 		ProjectDescription = projectDescription;
@@ -100,6 +110,22 @@ public class Project {
 		ProjectLink = projectLink;
 	}
 	
+	public String getProjectTitle() {
+		return ProjectTitle;
+	}
+
+	public void setProjectTitle(String projectTitle) {
+		ProjectTitle = projectTitle;
+	}
+
+	public String getProjectType() {
+		return ProjectType;
+	}
+
+	public void setProjectType(String projectType) {
+		ProjectType = projectType;
+	}
+
 	public Project()
 	{
 		
@@ -113,6 +139,8 @@ public class Project {
 		this.ProjectDescription= obj.getProjectDescription();
 		this.ProjectStatus= obj.getProjectStatus();
 		this.ProjectLink= obj.getProjectLink();
+		this.ProjectTitle= obj.getProjectTitle();
+		this.ProjectType= obj.getProjectType();
 	}
 	
 }
